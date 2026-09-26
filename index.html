@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <title>Мария, 50 — приглашение на юбилей</title>
+  <meta name="description" content="Приглашение на юбилей Марии 9 ноября 2026 года">
+
+  <!-- Превью ссылки в мессенджерах (замените картинку, когда будет своя) -->
+  <meta property="og:title" content="Мария приглашает на юбилей">
+  <meta property="og:description" content="9 ноября 2026, 17:00. Митинская улица, 55к1">
+  <meta property="og:image" content="assets/images/hero.jpg">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥂</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Prata&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ ЗАСТАВКА (открывает приглашение и включает музыку) ============ -->
+  <div class="cover" id="cover">
+    <div class="cover__inner">
+      <p class="cover__name">Мария</p>
+      <p class="cover__text">приглашает вас на свой юбилей</p>
+      <button class="btn btn--gold" id="openInvite" type="button">Открыть приглашение</button>
+    </div>
+  </div>
+
+  <!-- ============ МУЗЫКА ============ -->
+  <!-- Положите свой трек в assets/audio/music.mp3 -->
+  <audio id="bgMusic" src="assets/audio/music.mp3" loop preload="none"></audio>
+  <button class="music-btn" id="musicBtn" type="button" aria-label="Включить музыку" aria-pressed="false">
+    <span class="music-btn__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="music-btn__label">Музыка</span>
+  </button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <main>
+
+    <!-- ============ ПЕРВЫЙ ЭКРАН ============ -->
+    <section class="hero">
+      <div class="hero__sparkles" aria-hidden="true"></div>
+
+      <p class="hero__kicker">Приглашение на день рождения</p>
+
+      <!-- «5» — текст, «0» — золотая овальная рамка с фото внутри -->
+      <div class="hero__number" role="img" aria-label="50 лет">
+        <span class="hero__five" aria-hidden="true">5</span>
+        <figure class="photo hero__zero">
+          <img src="assets/images/hero.jpg" alt="">
+          <figcaption class="photo__hint">assets/images/hero.jpg</figcaption>
+        </figure>
+      </div>
+
+      <h1 class="hero__name">Мария</h1>
+
+      <p class="hero__date">
+        <time datetime="2026-11-09T17:00">9 ноября 2026, понедельник, 17:00</time>
+      </p>
+
+      <a class="hero__scroll" href="#countdown" aria-label="Листать дальше">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ============ ТАЙМЕР ============ -->
+    <section class="section countdown" id="countdown">
+      <h2 class="section__title">До праздника осталось</h2>
+
+      <div class="countdown__grid" id="timer" data-date="2026-11-09T17:00:00+03:00">
+        <div class="countdown__cell"><span class="countdown__value" data-unit="days">00</span><span class="countdown__unit" data-label="days">дней</span></div>
+        <div class="countdown__cell"><span class="countdown__value" data-unit="hours">00</span><span class="countdown__unit" data-label="hours">часов</span></div>
+        <div class="countdown__cell"><span class="countdown__value" data-unit="minutes">00</span><span class="countdown__unit" data-label="minutes">минут</span></div>
+        <div class="countdown__cell"><span class="countdown__value" data-unit="seconds">00</span><span class="countdown__unit" data-label="seconds">секунд</span></div>
+      </div>
+
+      <p class="countdown__done" id="timerDone" hidden>Праздник уже начался!</p>
+
+      <button class="btn btn--ghost" id="addToCalendar" type="button">Добавить в календарь</button>
+    </section>
+
+    <!-- ============ ТЕКСТ ПРИГЛАШЕНИЯ ============ -->
+    <section class="section letter">
+      <div class="letter__photos">
+        <figure class="photo photo--tilt-left">
+          <img src="assets/images/photo-1.jpg" alt="Фото Марии">
+          <figcaption class="photo__hint">assets/images/photo-1.jpg</figcaption>
+        </figure>
+        <figure class="photo photo--tilt-right">
+          <img src="assets/images/photo-2.jpg" alt="Фото Марии">
+          <figcaption class="photo__hint">assets/images/photo-2.jpg</figcaption>
+        </figure>
+      </div>
+
+      <div class="letter__text">
+        <h2 class="section__title">Дорогие мои!</h2>
+        <p>
+          Девятого ноября мне исполняется пятьдесят, и я очень хочу встретить
+          этот день рядом с самыми близкими людьми.
+        </p>
+        <p>
+          Я приготовила для вас вечер с вкусным ужином, любимой музыкой,
+          танцами и тёплыми разговорами. Отложите все дела и приходите:
+          без вас этот праздник просто не получится.
+        </p>
+        <p class="letter__sign">Ваша Мария</p>
+      </div>
+    </section>
+
+    <!-- ============ МЕСТО ============ -->
+    <section class="section venue">
+      <h2 class="section__title">Где и когда</h2>
+
+      <div class="venue__info">
+        <div class="venue__item">
+          <p class="venue__label">Дата и время</p>
+          <p class="venue__value">9 ноября, 17:00</p>
+        </div>
+        <div class="venue__item">
+          <p class="venue__label">Адрес</p>
+          <p class="venue__value">Москва, Митинская улица, 55к1</p>
+        </div>
+      </div>
+
+      <div class="venue__map">
+        <iframe
+          src="https://yandex.ru/map-widget/v1/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9C%D0%B8%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%2C%2055%D0%BA1&z=16"
+          title="Карта: Митинская улица, 55к1"
+          loading="lazy"
+          allowfullscreen></iframe>
+      </div>
+
+      <a class="btn btn--gold"
+         href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9C%D0%B8%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%2C%2055%D0%BA1"
+         target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+    </section>
+
+    <!-- ============ АНКЕТА ГОСТЯ ============ -->
+    <section class="section rsvp" id="rsvp">
+      <h2 class="section__title">Вы придёте?</h2>
+      <p class="rsvp__intro" id="rsvpIntro">Ответьте, пожалуйста, до 1 ноября, чтобы я успела всё подготовить.</p>
+
+      <form class="rsvp__form" id="rsvpForm" novalidate>
+        <div class="field">
+          <label class="field__label" for="guestName">Ваше имя и фамилия</label>
+          <input class="field__input" id="guestName" name="name" type="text" autocomplete="name" required>
+          <p class="field__error" id="nameError" hidden>Напишите, как вас зовут</p>
+        </div>
+
+        <fieldset class="field">
+          <legend class="field__label">Сможете прийти?</legend>
+          <div class="choice">
+            <label class="choice__item">
+              <input type="radio" name="attendance" value="Приду" required>
+              <span>Да, приду</span>
+            </label>
+            <label class="choice__item">
+              <input type="radio" name="attendance" value="Не смогу">
+              <span>Не смогу</span>
+            </label>
+          </div>
+          <p class="field__error" id="attendanceError" hidden>Выберите один из вариантов</p>
+        </fieldset>
+
+        <fieldset class="field" id="guestsField" hidden>
+          <legend class="field__label">Сколько вас будет, включая вас</legend>
+          <div class="choice choice--count">
+            <label class="choice__item">
+              <input type="radio" name="guests" value="1" checked>
+              <span>1</span>
+            </label>
+            <label class="choice__item">
+              <input type="radio" name="guests" value="2">
+              <span>2</span>
+            </label>
+            <label class="choice__item">
+              <input type="radio" name="guests" value="3">
+              <span>3</span>
+            </label>
+            <label class="choice__item">
+              <input type="radio" name="guests" value="4">
+              <span>4</span>
+            </label>
+            <label class="choice__item">
+              <input type="radio" name="guests" value="5">
+              <span>5</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field" id="drinksField" hidden>
+          <legend class="field__label">Что предпочитаете из напитков? <span class="field__optional">(можно несколько)</span></legend>
+          <div class="choice">
+            <label class="choice__item">
+              <input type="checkbox" name="drinks" value="Красное вино">
+              <span>Красное вино</span>
+            </label>
+            <label class="choice__item">
+              <input type="checkbox" name="drinks" value="Белое вино">
+              <span>Белое вино</span>
+            </label>
+            <label class="choice__item">
+              <input type="checkbox" name="drinks" value="Шампанское">
+              <span>Шампанское</span>
+            </label>
+            <label class="choice__item">
+              <input type="checkbox" name="drinks" value="Водка">
+              <span>Водка</span>
+            </label>
+            <label class="choice__item">
+              <input type="checkbox" name="drinks" value="Коньяк">
+              <span>Коньяк</span>
+            </label>
+            <label class="choice__item">
+              <input type="checkbox" name="drinks" value="Не пью алкоголь">
+              <span>Не пью алкоголь</span>
+            </label>
+          </div>
+          <p class="field__error" id="drinksError" hidden>Выберите напитки или «Не пью алкоголь»</p>
+        </fieldset>
+
+        <div class="field">
+          <label class="field__label" for="guestComment">Комментарий <span class="field__optional">(необязательно)</span></label>
+          <textarea class="field__input" id="guestComment" name="comment" rows="3" placeholder="Например, не ем мясо или приду чуть позже"></textarea>
+        </div>
+
+        <button class="btn btn--gold rsvp__submit" id="rsvpSubmit" type="submit">Отправить ответ</button>
+      </form>
+
+      <div class="rsvp__done" id="rsvpDone" hidden>
+        <p class="rsvp__done-title" id="rsvpDoneTitle">Спасибо!</p>
+        <p class="rsvp__done-text" id="rsvpDoneText"></p>
+
+        <button class="btn btn--ghost" id="rsvpEdit" type="button">Изменить ответ</button>
+      </div>
+    </section>
+
+    <!-- ============ КОНТАКТ ============ -->
+    <section class="section contact">
+      <figure class="photo photo--round contact__photo">
+        <img src="assets/images/contact.jpg" alt="Мария">
+        <figcaption class="photo__hint">assets/images/contact.jpg</figcaption>
+      </figure>
+
+      <h2 class="section__title">Остались вопросы?</h2>
+      <p class="contact__text">
+        Напишите или позвоните мне, я с радостью отвечу.
+      </p>
+      <p class="contact__phone">
+        <a href="tel:+79261883175">+7 926 188-31-75</a>
+      </p>
+
+      <div class="contact__buttons">
+        <a class="btn btn--gold" href="https://web.max.ru/152825177" target="_blank" rel="noopener">Написать в Макс</a>
+        <a class="btn btn--ghost" href="tel:+79261883175">Позвонить</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="footer__script">Жду вас!</p>
+    </footer>
+
+  </main>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>

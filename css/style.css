@@ -1,0 +1,681 @@
+/* =========================================================
+   Приглашение на юбилей Марии — стили
+   Цвета и шрифты меняются в :root ниже
+   ========================================================= */
+
+:root {
+  /* Палитра */
+  --bg:          #15110C;   /* основной фон */
+  --bg-deep:     #0B0906;   /* тёмные участки */
+  --bronze:      #4A3517;   /* акцентный фон */
+  --gold:        #E9C77B;   /* золото */
+  --gold-light:  #FFE9B3;
+  --gold-dark:   #B8893A;
+  --champagne:   #E6CFA0;   /* подписи, светлое золото */
+  --ivory:       #F7EEDF;   /* основной текст */
+  --ivory-muted: rgba(247, 238, 223, 0.7);
+
+  /* Шрифты */
+  --font-display: "Prata", "Georgia", "Times New Roman", serif;
+  --font-script:  "Marck Script", "Segoe Script", cursive;
+  --font-body:    "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  /* Размеры */
+  --container: 720px;
+  --radius-lg: 28px;
+  --radius-sm: 999px;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after { box-sizing: inherit; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body.is-locked { overflow: hidden; }
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+/* ---------- Кнопки ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 30px;
+  border-radius: var(--radius-sm);
+  font: 500 16px/1 var(--font-body);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn--gold {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold) 45%, var(--gold-dark));
+  color: var(--bg-deep);
+  box-shadow: 0 10px 30px -10px rgba(233, 199, 123, 0.6);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.btn--ghost:hover { background: rgba(233, 199, 123, 0.12); }
+
+/* ---------- Заставка ---------- */
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 35%, var(--bronze) 0%, var(--bg) 55%, var(--bg-deep) 100%);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.cover.is-hidden { opacity: 0; visibility: hidden; }
+
+.cover__name {
+  margin: 0;
+  font: 400 clamp(64px, 18vw, 120px)/1 var(--font-script);
+  color: var(--gold);
+}
+
+.cover__text {
+  margin: 12px 0 36px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--ivory-muted);
+}
+
+/* ---------- Первый экран ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 20px 96px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(74, 53, 23, 0.85) 0%, transparent 60%),
+    var(--bg);
+  overflow: hidden;
+}
+
+/* мерцающие искры на фоне */
+.hero__sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 12% 18%, var(--gold-light) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 78% 12%, var(--gold) 50%, transparent 51%),
+    radial-gradient(2px 2px at 88% 46%, var(--champagne) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 22% 64%, var(--gold) 50%, transparent 51%),
+    radial-gradient(2.5px 2.5px at 64% 82%, var(--gold-light) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 40% 30%, var(--champagne) 50%, transparent 51%),
+    radial-gradient(2px 2px at 6% 88%, var(--gold) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 94% 78%, var(--gold-light) 50%, transparent 51%);
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.45; }
+  to   { opacity: 1; }
+}
+
+.hero__kicker {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 4.5vw, 22px);
+  color: var(--champagne);
+}
+
+/* Главный элемент: золотое «5» и овальная рамка-«ноль» с фото */
+.hero__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 16px);
+  margin: 8px 0 4px;
+}
+
+.hero__five {
+  font: 400 clamp(170px, 46vw, 320px)/0.8 var(--font-display);
+  background: linear-gradient(170deg, var(--gold-light) 10%, var(--gold) 45%, var(--gold-dark) 90%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 12px 40px rgba(233, 199, 123, 0.25));
+}
+
+.photo.hero__zero {
+  width: clamp(116px, 30vw, 210px);
+  aspect-ratio: 3 / 4.3;
+  border-radius: 50%;
+  /* двойная золотая рамка, как у цифры */
+  border: clamp(10px, 2.6vw, 18px) solid var(--gold);
+  box-shadow:
+    0 0 0 2px var(--gold-dark),
+    0 12px 40px rgba(233, 199, 123, 0.3),
+    inset 0 0 0 2px var(--gold-light);
+}
+
+.hero__name {
+  margin: -10px 0 0;
+  font: 400 clamp(64px, 17vw, 110px)/1 var(--font-script);
+  color: var(--ivory);
+}
+
+.hero__date {
+  margin: 18px 0 0;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--ivory-muted);
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  width: 28px;
+  height: 46px;
+  margin-left: -14px;
+  border: 1.5px solid var(--gold);
+  border-radius: 20px;
+}
+
+.hero__scroll span {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--gold);
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-dot {
+  0%   { transform: translateY(0); opacity: 1; }
+  80%  { transform: translateY(16px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+
+/* ---------- Общие секции ---------- */
+.section {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 88px 20px;
+  text-align: center;
+}
+
+.section__title {
+  margin: 0 0 32px;
+  font: 400 clamp(30px, 7vw, 42px)/1.2 var(--font-display);
+  color: var(--gold);
+}
+
+/* ---------- Таймер ---------- */
+.countdown__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.countdown__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 4px 16px;
+  border: 1px solid rgba(233, 199, 123, 0.35);
+  border-radius: 20px;
+  background: rgba(247, 238, 223, 0.04);
+}
+
+.countdown__value {
+  font: 400 clamp(34px, 9vw, 54px)/1 var(--font-display);
+  color: var(--ivory);
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown__unit {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--champagne);
+}
+
+.countdown__done {
+  margin: 0 0 36px;
+  font: 400 44px/1.2 var(--font-script);
+  color: var(--gold);
+}
+
+/* ---------- Текст приглашения ---------- */
+.letter {
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+  text-align: left;
+}
+
+.letter__photos {
+  position: relative;
+  height: 440px;
+}
+
+.letter__photos .photo {
+  position: absolute;
+  width: 62%;
+  aspect-ratio: 3 / 4;
+  border-radius: 18px;
+  border: 6px solid var(--ivory);
+  box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.6);
+}
+
+.photo--tilt-left  { left: 0;  top: 0;    transform: rotate(-6deg); }
+.photo--tilt-right { right: 0; bottom: 0; transform: rotate(5deg); }
+
+.letter__text p {
+  max-width: 34em;
+  margin: 0 0 18px;
+  color: var(--ivory-muted);
+}
+
+.letter__sign {
+  margin-top: 28px !important;
+  font: 400 40px/1 var(--font-script);
+  color: var(--gold) !important;
+}
+
+/* ---------- Место ---------- */
+.venue {
+  max-width: none;
+  background: var(--bg-deep);
+}
+
+.venue > * {
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.venue__info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.venue__item {
+  padding: 22px 18px;
+  border-radius: 20px;
+  background: rgba(233, 199, 123, 0.08);
+}
+
+.venue__label {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: var(--champagne);
+}
+
+.venue__value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.venue__map {
+  overflow: hidden;
+  height: 340px;
+  margin-bottom: 28px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(233, 199, 123, 0.35);
+}
+
+.venue__map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* ---------- Анкета гостя ---------- */
+.rsvp__intro {
+  max-width: 30em;
+  margin: -12px auto 32px;
+  color: var(--ivory-muted);
+}
+
+.rsvp__form {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.field {
+  margin: 0 0 22px;
+  padding: 0;
+  border: 0;
+}
+
+.field__label {
+  display: block;
+  margin-bottom: 8px;
+  padding: 0;
+  font-size: 15px;
+  color: var(--champagne);
+}
+
+.field__optional { color: var(--ivory-muted); }
+
+.field__input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(233, 199, 123, 0.4);
+  border-radius: 14px;
+  background: rgba(247, 238, 223, 0.06);
+  color: var(--ivory);
+  font: 400 16px/1.4 var(--font-body);
+}
+
+.field__input::placeholder { color: rgba(247, 238, 223, 0.4); }
+
+.field__input:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: rgba(247, 238, 223, 0.1);
+}
+
+textarea.field__input { resize: vertical; min-height: 96px; }
+
+.field__error {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #FF9C9C;
+}
+
+.field.has-error .field__input { border-color: #FF9C9C; }
+
+.choice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.choice--count { grid-template-columns: repeat(5, 1fr); }
+
+.choice__item { position: relative; cursor: pointer; }
+
+.choice__item input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.choice__item span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border: 1px solid rgba(233, 199, 123, 0.4);
+  border-radius: 14px;
+  color: var(--ivory);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.choice__item input:checked + span {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg-deep);
+  font-weight: 700;
+}
+
+.choice__item input:focus-visible + span {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+.rsvp__submit { width: 100%; margin-top: 6px; }
+.rsvp__submit[disabled] { opacity: 0.6; cursor: wait; }
+
+/* карточка с благодарностью после отправки */
+.rsvp__done {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 36px 24px 32px;
+  border: 1px solid rgba(233, 199, 123, 0.35);
+  border-radius: var(--radius-lg);
+  background: rgba(233, 199, 123, 0.05);
+}
+
+.rsvp__done[hidden] { display: none; }
+
+.rsvp__done-title {
+  margin: 0 0 12px;
+  font: 400 48px/1.1 var(--font-script);
+  color: var(--gold);
+}
+
+.rsvp__done-text {
+  max-width: 28em;
+  margin: 0 auto 28px;
+  color: var(--ivory-muted);
+}
+
+/* ---------- Контакт ---------- */
+.photo.contact__photo {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 28px;
+  border: 3px solid var(--gold);
+}
+
+.contact__text {
+  max-width: 30em;
+  margin: 0 auto 20px;
+  color: var(--ivory-muted);
+}
+
+.contact__phone {
+  margin: 0 0 28px;
+  font: 400 26px/1.2 var(--font-display);
+}
+
+.contact__phone a { text-decoration: none; }
+
+.contact__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ---------- Подвал ---------- */
+.footer {
+  padding: 40px 20px 120px;
+  text-align: center;
+}
+
+.footer__script {
+  margin: 0;
+  font: 400 clamp(56px, 14vw, 88px)/1 var(--font-script);
+  color: var(--gold);
+}
+
+/* ---------- Фото и заглушки ---------- */
+.photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(233, 199, 123, 0.3), rgba(74, 53, 23, 0.85)),
+    var(--bronze);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo--round { border-radius: 50%; }
+
+/* Подсказка видна, только если файла с фото ещё нет */
+.photo__hint { display: none; }
+
+.photo.is-empty img { display: none; }
+
+.photo.is-empty .photo__hint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  font-size: 11px;
+  line-height: 1.3;
+  text-align: center;
+  word-break: break-all;
+  color: var(--ivory);
+  opacity: 0.8;
+}
+
+/* ---------- Кнопка музыки ---------- */
+.music-btn {
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 18px 0 16px;
+  border: 1px solid rgba(233, 199, 123, 0.5);
+  border-radius: var(--radius-sm);
+  background: rgba(11, 9, 6, 0.85);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  color: var(--gold);
+  font: 500 14px/1 var(--font-body);
+  cursor: pointer;
+}
+
+.music-btn__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+}
+
+.music-btn__bars i {
+  width: 3px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--gold);
+}
+
+.music-btn.is-playing .music-btn__bars i { animation: eq 0.9s ease-in-out infinite; }
+.music-btn.is-playing .music-btn__bars i:nth-child(2) { animation-delay: 0.2s; }
+.music-btn.is-playing .music-btn__bars i:nth-child(3) { animation-delay: 0.4s; }
+.music-btn.is-playing .music-btn__bars i:nth-child(4) { animation-delay: 0.1s; }
+
+@keyframes eq {
+  0%, 100% { height: 4px; }
+  50%      { height: 16px; }
+}
+
+/* ---------- Всплывающее сообщение ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  z-index: 60;
+  max-width: calc(100% - 32px);
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: var(--ivory);
+  color: var(--bg-deep);
+  font-size: 14px;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- Адаптив ---------- */
+@media (max-width: 760px) {
+  .letter {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .letter__photos { height: 360px; max-width: 360px; width: 100%; margin: 0 auto; }
+  .letter__text p { margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .section { padding: 64px 16px; }
+  .countdown__grid { gap: 8px; }
+  .countdown__cell { padding: 16px 2px 12px; border-radius: 16px; }
+  .countdown__unit { font-size: 12px; }
+  .venue__info { grid-template-columns: 1fr; }
+  .venue__map { height: 280px; }
+  .contact__buttons .btn { width: 100%; }
+}
+
+/* Уважаем настройку «уменьшить движение» */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
