@@ -291,6 +291,8 @@ function initRsvp() {
       }
       save(data);
       showDone(data);
+      // Форма сменилась короткой карточкой, возвращаем гостя к началу блока «Вы придёте?»
+      document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (err) {
       console.error(err);
       showToast('Не удалось отправить ответ. Проверьте интернет и попробуйте ещё раз');
