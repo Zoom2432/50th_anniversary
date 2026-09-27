@@ -7,7 +7,7 @@ const SHEET_NAME = 'Ответы';
 
 // Куда присылать письма. Пусто — на почту аккаунта Google, от имени которого развёрнут скрипт.
 // Можно указать несколько адресов через запятую: 'mama@mail.ru, ya@gmail.com'
-const NOTIFY_EMAIL = '';
+const NOTIFY_EMAIL = 'pstatov@gmail.com';
 
 function doPost(e) {
   // doPost вызывается сам, когда гость отправляет анкету. Для проверки из редактора есть testSend
