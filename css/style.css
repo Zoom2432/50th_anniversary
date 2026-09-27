@@ -147,19 +147,27 @@ a { color: inherit; }
   color: var(--label);
 }
 
-/* Главный элемент: золотое «50» */
-.hero__number {
-  margin: 8px 0 0;
-  font: 400 clamp(170px, 46vw, 300px)/0.9 var(--font-body);
-  letter-spacing: -0.04em;
-  background: linear-gradient(170deg, var(--gold-light) 10%, var(--gold) 50%, var(--gold-dark) 90%);
+/* Главный элемент: золотая фраза «Не 50, а 18+ опыт!» — слова рукописным шрифтом, цифры обычным */
+.hero__slogan {
+  margin: 12px 0 20px;
+  /* запас по краям: завитки рукописных букв выходят за границы текста,
+     без него золотой градиент их не закрашивает и они выглядят обрезанными */
+  padding: 0.1em 0.35em;
+  font: 400 clamp(64px, 17vw, 112px)/1.05 var(--font-script);
+  background: linear-gradient(170deg, #D9B26A 10%, var(--gold) 50%, var(--gold-dark) 90%);
   -webkit-background-clip: text;
           background-clip: text;
   color: transparent;
 }
 
+.hero__digits {
+  font-family: var(--font-body);
+  font-size: 0.9em;
+  letter-spacing: -0.02em;
+}
+
 .hero__name {
-  margin: -6px 0 0;
+  margin: 0;
   font: 400 clamp(64px, 17vw, 110px)/1 var(--font-script);
   color: var(--text);
 }
