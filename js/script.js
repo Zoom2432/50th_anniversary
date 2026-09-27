@@ -20,26 +20,12 @@ const RSVP = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  initPhotoPlaceholders();
   initCover();
   initMusic();
   initCountdown();
   initCalendarButton();
   initRsvp();
 });
-
-// ---------- Заглушки для фото ----------
-// Если файла с фото ещё нет, показываем подсказку с путём к нему
-function initPhotoPlaceholders() {
-  document.querySelectorAll('.photo img').forEach((img) => {
-    const markEmpty = () => img.closest('.photo').classList.add('is-empty');
-    const markLoaded = () => img.closest('.photo').classList.remove('is-empty');
-
-    if (img.complete && img.naturalWidth === 0) markEmpty();
-    img.addEventListener('error', markEmpty);
-    img.addEventListener('load', markLoaded);
-  });
-}
 
 // ---------- Заставка ----------
 function initCover() {
